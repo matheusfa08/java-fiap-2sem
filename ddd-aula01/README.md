@@ -1,7 +1,5 @@
 # 🎲Aprendendo a integrar um ***DataBase*** no projeto ***Java***☕
 
----
-
 ## 👣Primeiros passos:
 
 - Faça o *download* do *driver* tradutor com o banco de dados;
@@ -12,8 +10,6 @@
 - Adicione à ela, através do **"+"**, o *driver* do *database;*
 - Clique em ***"Apply"*** e PRONTO.
 
----
-
 ## 🗂️Mantendo as "Boas normas":
 
 ### Na ***"src"***, crie as packges:
@@ -23,8 +19,6 @@
 - ***tests***
 
 ### Não necessariamente com esses nomes, mas que cumpram os mesmos objetivos
-
----
 
 ## 🔨Crie uma classe Java para iniciar a conexão
 
