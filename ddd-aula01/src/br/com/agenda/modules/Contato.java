@@ -61,4 +61,15 @@ public class Contato {
 
     //Agora, vamos criar um objeto que vai ir até o banco de dados e vai realizar o CRUD (Create, read, update, delete)
     //Para ver, vá até ContatoDAO
+
+    //Lembra do toString()? Ele imprime uma mensagem sempre que você chamar o objeto em alguma outra classe
+    @Override
+    public String toString() {
+        return "\n======CONTATO======\n" +
+                "Nome: " + nomeContato + '\n' +
+                "Celular: " + celularContato + '\n' +
+                "Email: " + emailContato + '\n' +
+                "Instagram: " + instagram + '\n' +
+                "Tipo: " + tipo;
+    }
 }
