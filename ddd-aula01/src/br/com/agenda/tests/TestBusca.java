@@ -6,7 +6,7 @@ import br.com.agenda.modules.Contato;
 import java.util.Scanner;
 
 //Classe de teste da função consultarContato(x)
-public class testBusca {
+public class TestBusca {
     public static void main(String[] args) {
         //Leitor para usuários colocarem um ‘ID’ de escolha
         Scanner input = new Scanner(System.in);
