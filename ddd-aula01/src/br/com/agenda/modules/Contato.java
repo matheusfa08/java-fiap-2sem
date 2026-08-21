@@ -72,4 +72,17 @@ public class Contato {
                 "Instagram: " + instagram + '\n' +
                 "Tipo: " + tipo;
     }
+
+    //metodo void para retornar um menuzinho simples
+    public void menu(){
+        System.out.println("\n======AGENDA DE CONTATOS======");
+        System.out.println("1 - Cadastrar Contato");
+        System.out.println("2 - Buscar Contato por ID");
+        System.out.println("3 - Listar Contados");
+        System.out.println("4 - Alterar Contato por ID");
+        System.out.println("5 - Remover Contato");
+        System.out.println("0 - Sair");
+        System.out.println("------------------------------");
+        System.out.println("Digite  uma opção: ");
+    }
 }
