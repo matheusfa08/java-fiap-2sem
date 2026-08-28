@@ -54,7 +54,7 @@ public class TestMenu {
                     dao.cadastrarContato(c);
                     System.out.println("Contato Cadastrado com sucesso!");
 
-                    //Esse break impede que ele excute a linha de código abaixo, que é a case 2
+                    //Esse break impede que ele execute a linha de código abaixo, que é a case 2
                     break;
 
                 case 2:
@@ -71,7 +71,7 @@ public class TestMenu {
                     //Chama o objeto que retorna a sua toString()
                     System.out.println(c);
 
-                    //Esse break impede que ele excute a linha de código abaixo, que é a case 3
+                    //Esse break impede que ele execute a linha de código abaixo, que é a case 3
                     break;
 
                 case 3:
@@ -84,7 +84,7 @@ public class TestMenu {
                     System.out.println("======CONTATOS DA AGENDA======");
                     contatos.forEach(System.out::println);
 
-                    //Esse break impede que ele excute a linha de código abaixo, que é a case 4
+                    //Esse break impede que ele execute a linha de código abaixo, que é a case 4
                     break;
 
                 case 4:
@@ -108,7 +108,7 @@ public class TestMenu {
                     dao.alterarContato(c);
                     System.out.println("Contato alterado com sucesso!");
 
-                    //Esse break impede que ele excute a linha de código abaixo, que é a case 5
+                    //Esse break impede que ele execute a linha de código abaixo, que é a case 5
                     break;
 
                 case 5:
@@ -122,7 +122,7 @@ public class TestMenu {
                     dao.excluirContato(c.getIdContato());
                     System.out.println("Contato terminado...");
 
-                    //Esse break impede que ele excute a linha de código abaixo, que é a case 0
+                    //Esse break impede que ele execute a linha de código abaixo, que é a case 0
                     break;
 
                 case 0:
