@@ -1,14 +1,16 @@
 package br.com.agenda.tests;
 
 import br.com.agenda.dao.ContatoDAO;
+import br.com.agenda.dao.EnderecoDAO;
 import br.com.agenda.modules.Contato;
+import br.com.agenda.modules.Endereco;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 //Criamos um teste para o menu
-public class TestMenu {
+public class TestMenuContato {
     public static void main(String[] args) {
 
         //Criando os leitores para que o usuário possa inserir info
@@ -49,6 +51,22 @@ public class TestMenu {
                     c.setInstagram(inputStr.next());
                     System.out.println("Digite o tipo (AMIGO, FAMILIAR, PROFISSIONAL): ");
                     c.setTipo(inputStr.next());
+                    //Preciso fazer com que a pessoa digite o código do endereço, mas por enquanto:
+                    System.out.println("Digite o código do endereço:");
+                    int codigo = inputInt.nextInt();
+
+                    //Intâncio os objetos do endereço
+                    EnderecoDAO enderecoDAO = new EnderecoDAO();
+                    Endereco endereco = new Endereco();
+
+                    //Pego só o código e verifico se ele existe
+                    endereco = enderecoDAO.consultarEndereco(codigo);
+                    if(endereco == null){
+                        System.out.println("Endereço não cadastrado ou não existente");
+                        return;
+                    } else{
+                        c.setEndereco(endereco);
+                    }
 
                     //Ele chama a função cadastrarContato do objeto ContatoDao
                     dao.cadastrarContato(c);
@@ -81,7 +99,7 @@ public class TestMenu {
 
                     /*As mensagens são mostradas chamando a lista e para cada objeto dentro da lista, eles vão chamar a
                     sua própria toString(), ou se chamar, como preferir*/
-                    System.out.println("======CONTATOS DA AGENDA======");
+                    System.out.println("\n======CONTATOS DA AGENDA======");
                     contatos.forEach(System.out::println);
 
                     //Esse break impede que ele execute a linha de código abaixo, que é a case 4

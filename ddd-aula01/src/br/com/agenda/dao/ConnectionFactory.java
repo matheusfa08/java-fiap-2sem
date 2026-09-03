@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe que irá estabelecer conexão com os servidores da OracleDB através dos dados de login e do drive
+ * */
 public class ConnectionFactory {
     public static Connection obterConexao(){
         //Criado objeto que não tem nada
