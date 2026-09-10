@@ -1,10 +1,10 @@
-package br.com.agendaweb.agenda;
+package br.com.agenda.agenda_web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AgendaApplicationTests {
+class DddAula02ApplicationTests {
 
 	@Test
 	void contextLoads() {

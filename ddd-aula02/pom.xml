@@ -8,8 +8,8 @@
 		<version>4.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.agendaweb</groupId>
-	<artifactId>agenda</artifactId>
+	<groupId>br.com.agenda</groupId>
+	<artifactId>ddd-aula02</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
