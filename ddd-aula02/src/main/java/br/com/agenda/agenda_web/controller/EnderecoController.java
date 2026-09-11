@@ -25,7 +25,17 @@ public class EnderecoController {
 
     @PostMapping
     public void cadastrar(@RequestBody Endereco endereco){
+        System.out.println("Entrou");
         enderecoDAO.cadastrarEndereco(endereco);
+    }
 
+    @PutMapping("/{id}")
+    public void alterar(@RequestBody Endereco endereco, @PathVariable int id){
+        enderecoDAO.alterarEndereco(endereco);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable int id){
+        enderecoDAO.excluirEndereco(id);
     }
 }
