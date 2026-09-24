@@ -30,11 +30,11 @@ public class FilmeService {
 
     public void alterar(Filme filme, long id) {
         if (id != filme.getId()){
-            throw new RuntimeException("O id do filme não corresponde ao seu id");
+            throw new IllegalArgumentException("O id do filme não corresponde ao seu id");
         }
         Filme filmeExiste = ConsultarPorId(id);
         if (filmeExiste == null){
-            throw new RuntimeException("Filme não encontrado");
+            throw new IllegalArgumentException("Filme não encontrado");
         }
         filmeDAO.alterarFilme(filme);
     }
@@ -42,7 +42,7 @@ public class FilmeService {
     public void deletar(long id) {
         Filme filmeExiste = ConsultarPorId(id);
         if (filmeExiste == null){
-            throw new RuntimeException("Filme não encontrado");
+            throw new IllegalArgumentException("Filme não encontrado");
         }
         filmeDAO.excluirFilme(id);
     }
