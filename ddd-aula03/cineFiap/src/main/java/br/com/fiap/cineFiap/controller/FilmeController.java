@@ -60,8 +60,11 @@ public class FilmeController {
         }
     }
 
+    /*
+    Comum:
     @PutMapping("/{id}")
     public void alterar(@RequestBody Filme filme, @PathVariable long id) {filmeService.alterar(filme, id);}
+    */
 
     /*
     Comum
