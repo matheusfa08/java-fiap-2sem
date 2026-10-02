@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Sala {
-
     private Long id;
     private String nome;
     private double preco;

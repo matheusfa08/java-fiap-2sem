@@ -21,6 +21,4 @@ public class FilmeRequestDTO {
     private CategoriaFilmeEnum categoria;
     private ClassificacaoIndicativaEnum classificacao;
     private SimNaoEnum emCartaz;
-
-
 }

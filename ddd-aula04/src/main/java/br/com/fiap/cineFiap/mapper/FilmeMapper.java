@@ -1,7 +1,6 @@
 package br.com.fiap.cineFiap.mapper;
 
-import br.com.fiap.cineFiap.dto.FilmeRequestDTO;
-import br.com.fiap.cineFiap.dto.FilmeResponseDTO;
+import br.com.fiap.cineFiap.dto.*;
 import br.com.fiap.cineFiap.models.Filme;
 
 public class FilmeMapper {
@@ -42,5 +41,45 @@ public class FilmeMapper {
     }
 
     // Com classe record
+    public static Filme recordToEntity(FilmeRequest dto){
+        Filme filme = new Filme();
+        filme.setId(dto.id());
+        filme.setNome(dto.nome());
+        filme.setDuracao(dto.duracao());
+        filme.setAno(dto.ano());
+        filme.setCapa(dto.capa());
+        filme.setDiretor(dto.diretor());
+        filme.setElenco(dto.elenco());
+        filme.setDescricao(dto.descricao());
+        filme.setAvaliacao(dto.avaliacao());
+        filme.setCategoria(dto.categoria());
+        filme.setClassificacao(dto.classificacao());
+        filme.setEmCartaz(dto.emCartaz());
+        return filme;
+    }
 
+    public static FilmeResponse recordToDTODescricao(Filme filme){
+        return new FilmeResponse(
+                filme.getId(),
+                filme.getNome(),
+                filme.getDuracao(),
+                filme.getAno(),
+                filme.getCapa(),
+                filme.getDiretor(),
+                filme.getElenco(),
+                filme.getDescricao(),
+                filme.getAvaliacao(),
+                filme.getCategoria(),
+                filme.getClassificacao(),
+                filme.getEmCartaz()
+        );
+    }
+
+    public static FilmeResponseEmCartaz recordToDTOEmCartaz(Filme filme){
+        return new FilmeResponseEmCartaz(
+                filme.getCapa(),
+                filme.getNome(),
+                filme.getDuracao()
+        );
+    }
 }

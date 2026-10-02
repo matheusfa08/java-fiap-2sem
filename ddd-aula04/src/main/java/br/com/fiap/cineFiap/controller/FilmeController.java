@@ -1,7 +1,6 @@
 package br.com.fiap.cineFiap.controller;
 
-import br.com.fiap.cineFiap.dto.FilmeRequestDTO;
-import br.com.fiap.cineFiap.dto.FilmeResponseDTO;
+import br.com.fiap.cineFiap.dto.*;
 import br.com.fiap.cineFiap.mapper.FilmeMapper;
 import br.com.fiap.cineFiap.models.Filme;
 import br.com.fiap.cineFiap.service.FilmeService;
@@ -23,26 +22,26 @@ public class FilmeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FilmeResponseDTO> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<FilmeResponse> buscarPorId(@PathVariable Integer id) {
         var filme = service.buscarPorId(id);
         if (filme.getId() != null)
-            return ResponseEntity.ok(FilmeMapper.toDTO(filme));
+            return ResponseEntity.ok(FilmeMapper.recordToDTODescricao(filme));
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<FilmeResponseDTO>> filmesEmCartaz() {
+    public ResponseEntity<List<FilmeResponseEmCartaz>> filmesEmCartaz() {
         var lista = service.filmeEmCartaz()
                 .stream()
-                .map(FilmeMapper::toDTO)
+                .map(FilmeMapper::recordToDTOEmCartaz)
                 .toList();
         return ResponseEntity.ok(lista);
     }
 
     @PostMapping
-    public ResponseEntity<String> cadastrar(@RequestBody FilmeRequestDTO filme) {
+    public ResponseEntity<String> cadastrar(@RequestBody FilmeRequest filme) {
         try {
-            service.cadastrar(FilmeMapper.toEntity(filme));
+            service.cadastrar(FilmeMapper.recordToEntity(filme));
 
             return ResponseEntity.status(HttpStatus.CREATED).body("Filme cadastrado com sucesso!");
         } catch (IllegalArgumentException e) {
@@ -62,10 +61,10 @@ public class FilmeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> alterar(@PathVariable Integer id,
-                                        @RequestBody FilmeRequestDTO objeto) {
+                                        @RequestBody FilmeRequest objeto) {
         var filme = service.buscarPorId(id);
-        if (Objects.equals(filme.getId(), objeto.getId())) {
-            service.alterar(FilmeMapper.toEntity(objeto));
+        if (Objects.equals(filme.getId(), objeto.id())) {
+            service.alterar(FilmeMapper.recordToEntity(objeto));
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
