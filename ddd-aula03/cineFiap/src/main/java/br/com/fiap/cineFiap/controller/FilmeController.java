@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/filmes")
@@ -70,6 +71,27 @@ public class FilmeController {
             return ResponseEntity.status(HttpStatus.CREATED).body("Filme cadastrado com sucesso");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao cadastrar o filme: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> alterar(@PathVariable Integer id,
+                                        @RequestBody FilmeRequestDTO objeto){
+        var filme = filmeService.ConsultarPorId(id);
+        if(Objects.equals(filme.getId(), objeto.getId())) {
+            filmeService.alterar(FilmeMapper.toEntity(objeto));
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir (@PathVariable Integer id){
+        try{
+            filmeService.deletar(id);
+            return ResponseEntity.ok().build();
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.notFound().build();
         }
     }
     /*

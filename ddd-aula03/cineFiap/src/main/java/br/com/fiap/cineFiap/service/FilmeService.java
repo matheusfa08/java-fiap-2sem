@@ -28,7 +28,7 @@ public class FilmeService {
         }
     }
 
-    public void alterar(Filme filme, long id) {
+    public void alterar(Filme filme) {
         if (id != filme.getId()){
             throw new IllegalArgumentException("O id do filme não corresponde ao seu id");
         }
