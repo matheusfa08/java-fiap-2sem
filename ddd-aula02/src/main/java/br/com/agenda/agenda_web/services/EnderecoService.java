@@ -15,8 +15,10 @@ public class EnderecoService {
 
     // Podemos usar @Autowired
     private final EnderecoDAO enderecoDAO;
+    private final ViaCEPService viaCEPService;
 
-    public EnderecoService() {
+    public EnderecoService(ViaCEPService viaCEPService) {
+        this.viaCEPService = new ViaCEPService();
         enderecoDAO = new EnderecoDAO();
     }
 
@@ -27,9 +29,26 @@ public class EnderecoService {
         return endereco;
     }
 
+    public Endereco consultarCEP(String cep){
+        var enderecoDto = viaCEPService.consultarCep(cep);
+        var endereco = new Endereco();
+        endereco.setCep(enderecoDto.cep());
+        endereco.setUf(enderecoDto.uf());
+        endereco.setBairro(enderecoDto.bairro());
+        endereco.setEstado(enderecoDto.estado());
+        endereco.setCidade(enderecoDto.localidade());
+        endereco.setLogradouro(enderecoDto.logradouro());
+        endereco.setComplemento(enderecoDto.complemento());
+        return endereco;
+    }
+
     public void cadastrar(Endereco endereco){
         if(endereco.getCep() != null) {
-            enderecoDAO.cadastrarEndereco(endereco);
+            var novoEndereco = consultarCEP(endereco.getCep());
+            novoEndereco.setNumero(endereco.getNumero());
+            novoEndereco.setComplemento(endereco.getComplemento());
+            novoEndereco.setCodigo(endereco.getCodigo());
+            enderecoDAO.cadastrarEndereco(novoEndereco);
         } else {
             throw new RuntimeException("Endereço incompleto");
         }

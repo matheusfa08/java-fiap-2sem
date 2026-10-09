@@ -3,6 +3,7 @@ package br.com.agenda.agenda_web.controller;
 import br.com.agenda.agenda_web.dao.EnderecoDAO;
 import br.com.agenda.agenda_web.entity.Endereco;
 import br.com.agenda.agenda_web.services.EnderecoService;
+import br.com.agenda.agenda_web.services.ViaCEPService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,19 +21,28 @@ public class EnderecoController {
     * Usemos então:
     */
 
-    private EnderecoService enderecoService;
+    private ViaCEPService viaCEPService = new ViaCEPService();
+    private EnderecoService enderecoService = new EnderecoService(viaCEPService);
 
     @GetMapping
     public List<Endereco> listar() {return enderecoService.listar();}
 
     @GetMapping("/{id}")
-    public Endereco buscarPorId(int id){
+    public Endereco buscarPorId(@PathVariable int id){
         var endereco = enderecoService.buscarPorId(id);
         return endereco;
     }
 
+    @GetMapping("cep/{cep}")
+    public Endereco consultarCEP(@PathVariable String cep){
+        var endereco = enderecoService.consultarCEP(cep);
+        return endereco;
+    }
+
     @PostMapping
-    public void cadastrar(@RequestBody Endereco endereco){enderecoService.cadastrar(endereco);}
+    public void cadastrar(@RequestBody Endereco endereco){
+        enderecoService.cadastrar(endereco);
+    }
 
     @PutMapping("/{id}")
     public void alterar(@RequestBody Endereco endereco, @PathVariable int id){enderecoService.alterar(endereco,id);}
