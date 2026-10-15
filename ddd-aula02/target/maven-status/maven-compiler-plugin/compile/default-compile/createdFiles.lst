@@ -1,0 +1,9 @@
+br\com\agenda\agenda_web\dto\ViaCEPResponse.class
+br\com\agenda\agenda_web\services\EnderecoService.class
+br\com\agenda\agenda_web\mapper\ContatoMapper.class
+br\com\agenda\agenda_web\dto\ContatoResponseDTO.class
+br\com\agenda\agenda_web\dto\ContatoRequest.class
+br\com\agenda\agenda_web\services\ViaCEPService.class
+br\com\agenda\agenda_web\services\ContatoService.class
+br\com\agenda\agenda_web\dto\ContatoRequestDTO.class
+br\com\agenda\agenda_web\dto\ContatoResponse.class
