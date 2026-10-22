@@ -4,25 +4,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Classe que irá estabelecer conexão com os servidores da OracleDB através dos dados de login e do drive
- * */
 public class ConnectionFactory {
-    public static Connection obterConexao(){
-        //Criado objeto que não tem nada
-        Connection conexao = null;
 
-        //Usa tratativa de erro "try catch" para iniciar a conexão com o gerenciador do drive. Caso dê errado,
-        //ele retorna um erro e a conexão continua nula, sem nada.
-        try{
-            conexao = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl", "rm570933",
-                    "200308");
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
+    public static Connection obterConexao() {
+        String url = System.getenv("SPRING_DATASOURCE_URL");
+        String usuario = System.getenv("SPRING_DATASOURCE_USERNAME");
+        String senha = System.getenv("SPRING_DATASOURCE_PASSWORD");
+
+        if (url == null || usuario == null || senha == null) {
+            throw new IllegalStateException(
+                    "Variáveis de ambiente do Oracle não configuradas."
+            );
         }
 
-        //Como é um metodo fixo, ele tem que retornar algo, e então ele retorna a conexão.
-        return conexao;
+        try {
+            return DriverManager.getConnection(url, usuario, senha);
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Erro ao conectar ao banco Oracle.", e
+            );
+        }
     }
 }
